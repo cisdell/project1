@@ -32,6 +32,7 @@ app.get('/prices/AAPL', function (req, res) {
 
 app.get('/api/prices/:ticker', function (req, res) {
   const ticker = req.params.ticker;
+  console.log("request for:", ticker);
   res.setHeader('Content-Type', 'application/json');
   fetch(`https://data.messari.io/api/v1/assets/${ticker}/metrics?fields=market_data`)
   .then(response => response.json())
@@ -41,6 +42,9 @@ app.get('/api/prices/:ticker', function (req, res) {
       "ticker": ticker,
       "price": price
     }))
+  })
+  .catch((error) => {
+    res.error(error);
   })
 })
 
