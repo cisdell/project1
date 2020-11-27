@@ -47,11 +47,15 @@ app.get('/api/prices/:ticker', function (req, res) {
 app.get('/api/volume/:ticker', function (req, res) {
   const ticker = req.params.ticker;
   res.setHeader('Content-Type', 'application/json');
-   res.end(JSON.stringify({
-     "ticker": ticker,
-     "volume": "20mm"
+  fetch(`https://data.messari.io/api/v1/assets/${ticker}/metrics?fields=market_data`)
+  .then(response => response.json())
+  .then((response) => {
+    const volume = response.data.market_data.volume_last_24_hours  
+    res.end(JSON.stringify({
+      "ticker": ticker,
+      "volume": volume
    }))
-})
+})})
 
 
 var server = app.listen(8081, function () {

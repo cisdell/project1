@@ -10,12 +10,23 @@ fetch('http://localhost:8081/api/prices/bitcoin')
     // console.log(data)
 
 
+
 })
-fetch('http://localhost:8081/api/volume/GOOG')
+
+fetch('http://localhost:8081/api/volume/bitcoin')
 .then(response => response.json())
 .then(data => {
-    const element2 = document.getElementById("volumes");
-    element2.innerText = JSON.stringify(data);
+    setTimeout(() => {
+        const element = document.getElementById("volume");
+        element.innerText = JSON.stringify(data);
+    }, 2000)
 })
+
+// fetch('http://localhost:8081/api/volume/GOOG')
+// .then(response => response.json())
+// .then(data => {
+//     const element2 = document.getElementById("volumes");
+//     element2.innerText = JSON.stringify(data);
+// })
 
 ;
