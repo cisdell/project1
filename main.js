@@ -1,6 +1,6 @@
 console.log("hello world");
 
-fetch('http://localhost:8081/api/prices/GOOG')
+fetch('http://localhost:8081/api/prices/bitcoin')
 .then(response => response.json())
 .then(data => {
     setTimeout(() => {
