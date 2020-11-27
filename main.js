@@ -2,4 +2,20 @@ console.log("hello world");
 
 fetch('http://localhost:8081/api/prices/GOOG')
 .then(response => response.json())
-.then(data => console.log(data));
+.then(data => {
+    setTimeout(() => {
+        const element = document.getElementById("prices");
+        element.innerText = JSON.stringify(data);
+    }, 2000)
+    // console.log(data)
+
+
+})
+fetch('http://localhost:8081/api/volume/GOOG')
+.then(response => response.json())
+.then(data => {
+    const element2 = document.getElementById("volumes");
+    element2.innerText = JSON.stringify(data);
+})
+
+;
