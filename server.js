@@ -1,8 +1,39 @@
 var express = require('express');
 var app = express();
 
-app.get('/', function (req, res) {
-   res.send('Hello World - pornhub');
+app.get('/prices/GOOG', function (req, res) {
+  //  res.send('Hello World - pornhub');
+  // res.setHeader('Content-Type', 'application/json');
+   res.end(JSON.stringify({
+     "ticker": "GOOG",
+     "price": 1764
+   }))
+})
+
+app.get('/prices/AAPL', function (req, res) {
+  //  res.send('Hello World - pornhub');
+  // res.setHeader('Content-Type', 'application/json');
+   res.end(JSON.stringify({
+     "ticker": "AAPL",
+     "price": 123
+   }))
+})
+
+
+app.get('/api/prices/:ticker', function (req, res) {
+  const ticker = req.params.ticker;
+   res.end(JSON.stringify({
+     "ticker": ticker,
+     "price": 123
+   }))
+})
+
+app.get('/api/volume/:ticker', function (req, res) {
+  const ticker = req.params.ticker;
+   res.end(JSON.stringify({
+     "ticker": ticker,
+     "volume": "20mm"
+   }))
 })
 
 var server = app.listen(8081, function () {
